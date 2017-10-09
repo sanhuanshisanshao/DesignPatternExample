@@ -13,7 +13,6 @@ type Quack interface {
 type Duck interface {
 	Swim()
 	Eat()
-	//Name(name string)
 }
 
 type BasicDuck struct {
@@ -27,11 +26,8 @@ func (d *BasicDuck) Eat() {
 	fmt.Println("basic duck eatting...")
 }
 
-//func (d *BasicDuck) Name(name string) {
-//	fmt.Println("duck name is " + name)
-//}
-
 type RedheadDuck struct {
+	//继承鸭子的通用接口
 	D Duck
 }
 
