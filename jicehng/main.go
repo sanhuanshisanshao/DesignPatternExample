@@ -35,6 +35,10 @@ func (d *RedheadDuck) Fly() {
 	fmt.Println("red head duck flying...")
 }
 
+func (d *RedheadDuck) Quack() {
+	fmt.Println("red head duck quacking...")
+}
+
 func main() {
 	var d RedheadDuck
 	d.D = &BasicDuck{}
@@ -42,4 +46,5 @@ func main() {
 	d.D.Eat()
 	d.D.Swim()
 	d.Fly()
+	d.Quack()
 }
