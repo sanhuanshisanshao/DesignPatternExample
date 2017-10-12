@@ -6,8 +6,29 @@ type Fly interface {
 	Fly()
 }
 
+type slowFly struct {
+}
+
+func (f *slowFly) Fly() {
+	fmt.Println("fly slowly ...")
+}
+
+type fastFly struct {
+}
+
+func (f *fastFly) Fly() {
+	fmt.Println("fly quickly ...")
+}
+
 type Quack interface {
 	Quack()
+}
+
+type gentlyQuack struct {
+}
+
+func (q *gentlyQuack) Quack() {
+	fmt.Println("quack gently ...")
 }
 
 type Duck interface {
@@ -27,24 +48,42 @@ func (d *BasicDuck) Eat() {
 }
 
 type RedheadDuck struct {
-	//继承鸭子的通用接口
+	Q Quack
+	F Fly
 	D Duck
 }
 
-func (d *RedheadDuck) Fly() {
-	fmt.Println("red head duck flying...")
+func (d *RedheadDuck) setFly(style string) {
+	switch style {
+	case "slow":
+		d.F = &slowFly{}
+		break
+	default:
+		d.F = &fastFly{}
+		break
+	}
 }
 
-func (d *RedheadDuck) Quack() {
-	fmt.Println("red head duck quacking...")
+func (d *RedheadDuck) setQuack() {
+	d.Q = &gentlyQuack{}
 }
 
 func main() {
-	var d RedheadDuck
-	d.D = &BasicDuck{}
+	duck := &RedheadDuck{}
+	duck.D = &BasicDuck{}
+	duck.setFly("slow")
+	duck.setQuack()
 
-	d.D.Eat()
-	d.D.Swim()
-	d.Fly()
-	d.Quack()
+	duck.D.Eat()
+	duck.D.Swim()
+	duck.F.Fly()
+	duck.Q.Quack()
+
+	duck.setFly("")
+
+	duck.D.Eat()
+	duck.D.Swim()
+	duck.F.Fly()
+	duck.Q.Quack()
+
 }
