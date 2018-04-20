@@ -82,7 +82,7 @@ func main() {
 	observer1.Display()
 	observer2.Display()
 
-	//observer1 取消订阅主题
+	//observer1取消订阅主题
 	scoreSubject.removeObserver(observer1)
 	scoreSubject.SetScoreResult("2-1")
 	//observer1不再获取主题的最新推送
